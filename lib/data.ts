@@ -21,18 +21,18 @@ export const DATA = {
   about: "A professional dedicated to building scalable and efficient digital solutions. Focused on clean system architecture and intuitive user experiences.",
   experiences: [
     {
-      company: "Tech Corp Indonesia",
-      role: "Senior Frontend Engineer",
-      period: "2021 - Sekarang",
-      description: "Memimpin tim pengembangan antarmuka untuk aplikasi fintech dengan lebih dari 1 juta pengguna aktif.",
-      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&q=80"
+      company: "MTSN 2 TEGAL",
+      role: "Pelajar",
+      period: "2020 - 2024",
+      description: "MTS NGAPAIN SIH GW ?",
+      image: "/logo/mts.jpg"
     },
     {
-      company: "Digital Solutions",
-      role: "Fullstack Developer",
-      period: "2019 - 2021",
-      description: "Mengembangkan sistem manajemen inventaris berbasis cloud untuk klien enterprise.",
-      image: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=800&q=80"
+      company: "SMKN 1 SLAWI",
+      role: "Pelajar",
+      period: "2024 - Sekarang",
+      description: "Mempelajari pemrograman dasar, pengembangan aplikasi web (HTML, CSS, JavaScript, framework), pengelolaan basis data (database), desain antarmuka (UI/UX), pengembangan aplikasi mobile, dan pengujian perangkat lunak, serta dibekali keterampilan seperti manajemen proyek, keamanan siber, dan pemahaman logika/algoritma untuk menciptakan software, aplikasi.",
+      image: "/logo/smk.jpeg"
     }
   ] as unknown as Experience[],
   projects: [

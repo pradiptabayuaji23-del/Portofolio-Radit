@@ -1,3 +1,4 @@
+export const runtime = 'edge';
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -14,7 +15,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Portfolio Radit",
-  description: "Portfolio pribadi Radit, seorang pengembang web dan mobile yang berfokus pada pembuatan solusi digital inovatif.",
+  description: "Portfolio pribadi Radit seorang pengembang web", // Sesuaikan dengan teksmu
+  // TAMBAHKAN BAGIAN INI:
+  icons: {
+    icon: '/logo/radit-logo.svg',
+  },
 };
 
 export default function RootLayout({
