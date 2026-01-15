@@ -1,12 +1,16 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef } from "react";
+// Import library resmi Formspree
+import { useForm, ValidationError } from "@formspree/react"; 
 import { motion, AnimatePresence, Variants } from "framer-motion";
-import { Loader2, CheckCircle2, ArrowRight, Mail, MapPin } from "lucide-react";
+import { Loader2, CheckCircle2, ArrowRight, Mail, MapPin, Send } from "lucide-react";
 
-const PROFILE_IMAGE_URL = "/logo/profile.jpg"; // Updated image path
+const PROFILE_IMAGE_URL = "/logo/profile.jpg";
 
-// --- ANIMATION VARIANTS (Fixed Types) ---
+// --- GANTI DENGAN ID FORMSPREE ASLI ANDA ---
+const FORMSPREE_ID = "xlggeqod"; 
+
 const cardVariants: Variants = {
   hidden: { opacity: 0, y: 50, scale: 0.95 },
   visible: { 
@@ -21,10 +25,7 @@ const formStaggerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.3
-    }
+    transition: { staggerChildren: 0.1, delayChildren: 0.3 }
   }
 };
 
@@ -34,33 +35,32 @@ const itemVariants: Variants = {
 };
 
 export default function ContactSection() {
-  const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success">("idle");
+  // Gunakan hook resmi dari Formspree
+  const [state, handleSubmit] = useForm(FORMSPREE_ID);
+  
+  // Buat referensi ke elemen form agar bisa di-reset
+  const formRef = useRef<HTMLFormElement>(null);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setFormStatus("submitting");
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    setFormStatus("success");
-    setTimeout(() => setFormStatus("idle"), 3000);
-  };
+  // Efek untuk reset form saat sukses
+  useEffect(() => {
+    if (state.succeeded && formRef.current) {
+      formRef.current.reset();
+    }
+  }, [state.succeeded]);
 
   return (
     <div className="flex items-center justify-center bg-transparent relative overflow-hidden py-10 px-4"> 
       
-      {/* --- UNIFIED CARD CONTAINER --- */}
       <motion.div 
         variants={cardVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
-        // Added shadow-2xl and shadow-black/20 for stronger shadow
         className="w-full max-w-5xl bg-white rounded-3xl shadow-2xl shadow-black/20 overflow-hidden flex flex-col md:flex-row min-h-[550px]"
       >
         
-        {/* --- KOLOM KIRI: IMAGE SIDEBAR --- */}
+        {/* --- KOLOM KIRI (PROFILE) --- */}
         <div className="relative w-full md:w-[40%] bg-neutral-900 text-white p-8 flex flex-col justify-between overflow-hidden">
-            
-            {/* Background Image */}
             <div className="absolute inset-0 opacity-60">
                 <motion.img 
                   initial={{ scale: 1.1 }}
@@ -73,13 +73,12 @@ export default function ContactSection() {
             </div>
             <div className="absolute inset-0 bg-gradient-to-b from-neutral-900/90 via-neutral-900/80 to-neutral-900/90" />
             
-            {/* Content */}
             <div className="relative z-10">
                 <motion.div 
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.4, duration: 0.6 }}
-                  className="h-16 w-16 rounded-full border-2 border-white/20 overflow-hidden mb-6 shadow-lg shadow-black/30" // Added shadow to profile image
+                  className="h-16 w-16 rounded-full border-2 border-white/20 overflow-hidden mb-6 shadow-lg shadow-black/30"
                 >
                     <img src={PROFILE_IMAGE_URL} alt="Profile" className="w-full h-full object-cover" />
                 </motion.div>
@@ -91,12 +90,11 @@ export default function ContactSection() {
                 >
                   <h3 className="text-3xl font-bold tracking-tight">Let's build something great.</h3>
                   <p className="text-neutral-400 mt-2 text-sm leading-relaxed">
-                      I'm currently available for freelance projects. If you have an idea, let's discuss it.
+                      I'm currently available for freelance projects.
                   </p>
                 </motion.div>
             </div>
 
-            {/* Contact Info */}
             <motion.div 
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -104,20 +102,19 @@ export default function ContactSection() {
               className="relative z-10 space-y-4 mt-8 md:mt-0"
             >
                 <div className="flex items-center gap-3 text-sm text-neutral-300">
-                    <div className="p-2 rounded-full bg-white/10 backdrop-blur-sm shadow-sm"> {/* Added shadow */}
+                    <div className="p-2 rounded-full bg-white/10 backdrop-blur-sm shadow-sm">
                         <Mail size={16} />
                     </div>
                     <span>raditbayuaji23@gmail.com</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm text-neutral-300">
-                    <div className="p-2 rounded-full bg-white/10 backdrop-blur-sm shadow-sm"> {/* Added shadow */}
+                    <div className="p-2 rounded-full bg-white/10 backdrop-blur-sm shadow-sm">
                         <MapPin size={16} />
                     </div>
                     <span>Jakarta, Indonesia</span>
                 </div>
             </motion.div>
 
-            {/* Decorative Circle */}
             <motion.div 
               animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
@@ -125,8 +122,8 @@ export default function ContactSection() {
             />
         </div>
 
-        {/* --- KOLOM KANAN: FORM AREA --- */}
-        <div className="w-full md:w-[60%] p-8 md:p-12 bg-white flex flex-col justify-center relative z-20"> {/* Added z-20 */}
+        {/* --- KOLOM KANAN: FORM --- */}
+        <div className="w-full md:w-[60%] p-8 md:p-12 bg-white flex flex-col justify-center relative z-20">
             
             <motion.div 
               variants={formStaggerVariants}
@@ -139,23 +136,28 @@ export default function ContactSection() {
                   <p className="text-neutral-500 text-sm mt-1">I usually respond within 24 hours.</p>
               </motion.div>
 
-              <form onSubmit={handleSubmit} className="space-y-6"> {/* Increased spacing */}
-                  <div className="grid grid-cols-2 gap-6"> {/* Increased gap */}
+              {/* Tambahkan ref={formRef} di sini */}
+              <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-2 gap-6">
                       <motion.div variants={itemVariants}>
-                        <ModernInput id="name" label="Name" type="text" />
+                        <ModernInput id="name" name="name" label="Name" type="text" />
+                        <ValidationError prefix="Name" field="name" errors={state.errors} className="text-red-500 text-xs mt-1" />
                       </motion.div>
                       <motion.div variants={itemVariants}>
-                        <ModernInput id="email" label="Email" type="email" />
+                        <ModernInput id="email" name="email" label="Your Email" type="email" />
+                        <ValidationError prefix="Email" field="email" errors={state.errors} className="text-red-500 text-xs mt-1" />
                       </motion.div>
                   </div>
                   
                   <motion.div variants={itemVariants}>
-                    <ModernInput id="subject" label="Subject" type="text" />
+                    <ModernInput id="subject" name="subject" label="Subject" type="text" />
+                    <ValidationError prefix="Subject" field="subject" errors={state.errors} className="text-red-500 text-xs mt-1" />
                   </motion.div>
 
                   <motion.div variants={itemVariants} className="relative mt-2">
                       <textarea 
-                          id="message" 
+                          id="message"
+                          name="message" 
                           required 
                           rows={3} 
                           className="peer w-full border-b border-neutral-300 bg-transparent py-3 text-neutral-900 placeholder-transparent focus:border-neutral-900 focus:outline-none transition-colors resize-none text-sm leading-relaxed" 
@@ -167,31 +169,41 @@ export default function ContactSection() {
                       >
                           Tell me about your project
                       </label>
+                      <ValidationError prefix="Message" field="message" errors={state.errors} className="text-red-500 text-xs mt-1" />
                   </motion.div>
 
-                  <motion.div variants={itemVariants} className="pt-4"> {/* Increased top padding */}
+                  <motion.div variants={itemVariants} className="pt-4">
                       <button 
                           type="submit" 
-                          disabled={formStatus === 'submitting' || formStatus === 'success'}
-                          // Added shadow-lg and shadow-neutral-900/20 to button
-                          className="group relative flex items-center justify-center gap-3 px-8 py-3 bg-neutral-900 text-white rounded-full font-medium text-sm hover:bg-neutral-800 transition-all active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed w-full md:w-auto shadow-lg shadow-neutral-900/20 hover:shadow-xl hover:shadow-neutral-900/30"
+                          disabled={state.submitting || state.succeeded} 
+                          className={`group relative flex items-center justify-center gap-3 px-8 py-3 rounded-full font-medium text-sm transition-all active:scale-95 w-full md:w-auto shadow-lg 
+                          ${state.succeeded 
+                            ? 'bg-green-600 text-white shadow-green-900/20' 
+                            : 'bg-neutral-900 text-white hover:bg-neutral-800 shadow-neutral-900/20 hover:shadow-xl hover:shadow-neutral-900/30'
+                          }`}
                       >
                           <AnimatePresence mode="wait">
-                              {formStatus === 'submitting' ? (
+                              {state.submitting ? (
                                   <motion.div key="loading" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-2">
-                                      <Loader2 className="animate-spin" size={16} /> Sending
+                                      <Loader2 className="animate-spin" size={16} /> Sending...
                                   </motion.div>
-                              ) : formStatus === 'success' ? (
+                              ) : state.succeeded ? (
                                   <motion.div key="success" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-2">
-                                      <CheckCircle2 size={16} className="text-green-400" /> Sent!
+                                      <CheckCircle2 size={16} /> Sent!
                                   </motion.div>
                               ) : (
                                   <motion.div key="idle" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-2">
-                                      Send Message <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                                      Send Message <Send size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                                   </motion.div>
                               )}
                           </AnimatePresence>
                       </button>
+                      
+                      {state.errors && Object.keys(state.errors).length > 0 && !state.succeeded && (
+                          <p className="text-red-500 text-xs mt-3 text-center">
+                            Failed to send. Please check your inputs.
+                          </p>
+                      )}
                   </motion.div>
               </form>
             </motion.div>
@@ -202,12 +214,14 @@ export default function ContactSection() {
   );
 }
 
-function ModernInput({ id, label, type }: { id: string, label: string, type: string }) {
+// Komponen ModernInput (Tetap sama)
+function ModernInput({ id, label, type, name }: { id: string, label: string, type: string, name: string }) {
   return (
     <div className="relative">
       <input 
         type={type} 
-        id={id} 
+        id={id}
+        name={name}
         required 
         placeholder={label} 
         className="peer w-full border-b border-neutral-300 bg-transparent py-3 text-neutral-900 placeholder-transparent focus:border-neutral-900 focus:outline-none transition-colors text-sm" 
