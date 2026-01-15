@@ -59,7 +59,7 @@ export default function ContactSection() {
         className="w-full max-w-5xl bg-white rounded-3xl shadow-2xl shadow-black/20 overflow-hidden flex flex-col md:flex-row min-h-[550px]"
       >
         
-        {/* --- KOLOM KIRI (PROFILE) --- */}
+        {/* --- KOLOM KIRI (PROFIL) --- */}
         <div className="relative w-full md:w-[40%] bg-neutral-900 text-white p-8 flex flex-col justify-between overflow-hidden">
             <div className="absolute inset-0 opacity-60">
                 <motion.img 
@@ -67,7 +67,7 @@ export default function ContactSection() {
                   whileInView={{ scale: 1 }}
                   transition={{ duration: 1.5 }}
                   src={PROFILE_IMAGE_URL}
-                  alt="Background" 
+                  alt="Latar Belakang" 
                   className="w-full h-full object-cover grayscale mix-blend-overlay opacity-50" 
                 />
             </div>
@@ -80,7 +80,7 @@ export default function ContactSection() {
                   transition={{ delay: 0.4, duration: 0.6 }}
                   className="h-16 w-16 rounded-full border-2 border-white/20 overflow-hidden mb-6 shadow-lg shadow-black/30"
                 >
-                    <img src={PROFILE_IMAGE_URL} alt="Profile" className="w-full h-full object-cover" />
+                    <img src={PROFILE_IMAGE_URL} alt="Profil" className="w-full h-full object-cover" />
                 </motion.div>
                 
                 <motion.div
@@ -88,9 +88,9 @@ export default function ContactSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5, duration: 0.6 }}
                 >
-                  <h3 className="text-3xl font-bold tracking-tight">Let's build something great.</h3>
+                  <h3 className="text-3xl font-bold tracking-tight">Mari buat sesuatu yang hebat.</h3>
                   <p className="text-neutral-400 mt-2 text-sm leading-relaxed">
-                      I'm currently available for freelance projects.
+                      Saya saat ini tersedia untuk proyek freelance. Jika Anda punya ide, mari diskusikan.
                   </p>
                 </motion.div>
             </div>
@@ -122,7 +122,7 @@ export default function ContactSection() {
             />
         </div>
 
-        {/* --- KOLOM KANAN: FORM --- */}
+        {/* --- KOLOM KANAN: FORMULIR --- */}
         <div className="w-full md:w-[60%] p-8 md:p-12 bg-white flex flex-col justify-center relative z-20">
             
             <motion.div 
@@ -132,26 +132,26 @@ export default function ContactSection() {
               viewport={{ once: true }}
             >
               <motion.div variants={itemVariants} className="mb-8">
-                  <h2 className="text-2xl font-bold text-neutral-900">Send me a message</h2>
-                  <p className="text-neutral-500 text-sm mt-1">I usually respond within 24 hours.</p>
+                  <h2 className="text-2xl font-bold text-neutral-900">Kirim Pesan</h2>
+                  <p className="text-neutral-500 text-sm mt-1">Saya biasanya merespons dalam 24 jam.</p>
               </motion.div>
 
-              {/* Tambahkan ref={formRef} di sini */}
+              {/* Formulir */}
               <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-2 gap-6">
                       <motion.div variants={itemVariants}>
-                        <ModernInput id="name" name="name" label="Name" type="text" />
-                        <ValidationError prefix="Name" field="name" errors={state.errors} className="text-red-500 text-xs mt-1" />
+                        <ModernInput id="name" name="name" label="Nama" type="text" />
+                        <ValidationError prefix="Nama" field="name" errors={state.errors} className="text-red-500 text-xs mt-1" />
                       </motion.div>
                       <motion.div variants={itemVariants}>
-                        <ModernInput id="email" name="email" label="Your Email" type="email" />
+                        <ModernInput id="email" name="email" label="Email Anda" type="email" />
                         <ValidationError prefix="Email" field="email" errors={state.errors} className="text-red-500 text-xs mt-1" />
                       </motion.div>
                   </div>
                   
                   <motion.div variants={itemVariants}>
-                    <ModernInput id="subject" name="subject" label="Subject" type="text" />
-                    <ValidationError prefix="Subject" field="subject" errors={state.errors} className="text-red-500 text-xs mt-1" />
+                    <ModernInput id="subject" name="subject" label="Subjek" type="text" />
+                    <ValidationError prefix="Subjek" field="subject" errors={state.errors} className="text-red-500 text-xs mt-1" />
                   </motion.div>
 
                   <motion.div variants={itemVariants} className="relative mt-2">
@@ -161,15 +161,15 @@ export default function ContactSection() {
                           required 
                           rows={3} 
                           className="peer w-full border-b border-neutral-300 bg-transparent py-3 text-neutral-900 placeholder-transparent focus:border-neutral-900 focus:outline-none transition-colors resize-none text-sm leading-relaxed" 
-                          placeholder="Message" 
+                          placeholder="Pesan" 
                       />
                       <label 
                           htmlFor="message" 
                           className="absolute left-0 -top-3.5 text-xs text-neutral-500 transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-placeholder-shown:text-neutral-400 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-neutral-900"
                       >
-                          Tell me about your project
+                          Ceritakan tentang proyek Anda
                       </label>
-                      <ValidationError prefix="Message" field="message" errors={state.errors} className="text-red-500 text-xs mt-1" />
+                      <ValidationError prefix="Pesan" field="message" errors={state.errors} className="text-red-500 text-xs mt-1" />
                   </motion.div>
 
                   <motion.div variants={itemVariants} className="pt-4">
@@ -185,15 +185,15 @@ export default function ContactSection() {
                           <AnimatePresence mode="wait">
                               {state.submitting ? (
                                   <motion.div key="loading" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-2">
-                                      <Loader2 className="animate-spin" size={16} /> Sending...
+                                      <Loader2 className="animate-spin" size={16} /> Mengirim...
                                   </motion.div>
                               ) : state.succeeded ? (
                                   <motion.div key="success" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-2">
-                                      <CheckCircle2 size={16} /> Sent!
+                                      <CheckCircle2 size={16} /> Terkirim!
                                   </motion.div>
                               ) : (
                                   <motion.div key="idle" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-2">
-                                      Send Message <Send size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                                      Kirim Pesan <Send size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                                   </motion.div>
                               )}
                           </AnimatePresence>
@@ -201,7 +201,7 @@ export default function ContactSection() {
                       
                       {state.errors && Object.keys(state.errors).length > 0 && !state.succeeded && (
                           <p className="text-red-500 text-xs mt-3 text-center">
-                            Failed to send. Please check your inputs.
+                            Gagal mengirim. Mohon periksa input Anda.
                           </p>
                       )}
                   </motion.div>
@@ -214,7 +214,7 @@ export default function ContactSection() {
   );
 }
 
-// Komponen ModernInput (Tetap sama)
+// Komponen Input Modern (Label Tetap Sama, Hanya Placeholder yang Dihapus agar Label Bekerja)
 function ModernInput({ id, label, type, name }: { id: string, label: string, type: string, name: string }) {
   return (
     <div className="relative">
@@ -223,7 +223,7 @@ function ModernInput({ id, label, type, name }: { id: string, label: string, typ
         id={id}
         name={name}
         required 
-        placeholder={label} 
+        placeholder=" " // Placeholder kosong agar label bisa mendeteksi 'placeholder-shown'
         className="peer w-full border-b border-neutral-300 bg-transparent py-3 text-neutral-900 placeholder-transparent focus:border-neutral-900 focus:outline-none transition-colors text-sm" 
       />
       <label 
