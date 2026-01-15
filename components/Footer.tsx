@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion, Variants } from "framer-motion";
-import { Github, Linkedin, Twitter, Mail, ArrowUpRight } from "lucide-react";
+import { Github, Linkedin, Instagram, Mail, ArrowUpRight } from "lucide-react";
 import Link from "next/link"; 
 
 const PROFILE_IMAGE_URL = "/logo/profile.jpg";
@@ -101,22 +101,22 @@ export default function Footer() {
           <h4 className="text-lg font-semibold text-white mb-5">Connect</h4>
           <ul className="space-y-3">
             <li>
-              <Link href="#" className="flex items-center gap-3 hover:text-white transition-colors">
+              <Link href="https://github.com/pradiptabayuaji23-del" className="flex items-center gap-3 hover:text-white transition-colors">
                 <Github size={20} /> GitHub
               </Link>
             </li>
             <li>
-              <Link href="#" className="flex items-center gap-3 hover:text-white transition-colors">
+              <Link href="https://www.linkedin.com/in/pradipta-bayuaji-9b7b62391" className="flex items-center gap-3 hover:text-white transition-colors">
                 <Linkedin size={20} /> LinkedIn
               </Link>
             </li>
             <li>
-              <Link href="#" className="flex items-center gap-3 hover:text-white transition-colors">
-                <Twitter size={20} /> Twitter
+              <Link href="https://www.instagram.com/twinch_butter" className="flex items-center gap-3 hover:text-white transition-colors">
+                <Instagram size={20} /> Instagram
               </Link>
             </li>
             <li>
-              <Link href="mailto:email@example.com" className="flex items-center gap-3 hover:text-white transition-colors">
+              <Link href="mailto:raditbayuaji23@gmail.com" className="flex items-center gap-3 hover:text-white transition-colors">
                 <Mail size={20} /> Email
               </Link>
             </li>
