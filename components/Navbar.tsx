@@ -7,6 +7,7 @@ import { Menu, X, ArrowUpRight } from "lucide-react";
 import Image from "next/image"; // <--- 1. Ganti import Logo dengan Image dari Next.js
 
 const navLinks = [
+  { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
   { name: "Experience", href: "#experience" },
   { name: "Projects", href: "#projects" },
