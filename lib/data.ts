@@ -24,7 +24,7 @@ export const DATA = {
       company: "MTSN 2 TEGAL",
       role: "Pelajar",
       period: "2020 - 2024",
-      description: "MTS NGAPAIN SIH GW ?",
+      description: "Menempuh pendidikan menengah pertama dengan kurikulum berbasis keislaman. Mempelajari ilmu pengetahuan alam, matematika, bahasa, serta pendidikan agama Islam yang menjadi fondasi dalam membentuk karakter, disiplin, dan pola pikir analitis untuk jenjang pendidikan selanjutnya.",
       image: "/logo/mts.jpg"
     },
     {
@@ -37,19 +37,25 @@ export const DATA = {
   ] as unknown as Experience[],
   projects: [
     {
-      title: "Enterprise Dashboard",
-      tech: ["Next.js", "TypeScript", "GraphQL"],
-      description: "Dashboard analitik real-time untuk pemantauan logistik global dengan jutaan data point.",
-      link: "#",
-      // Tambahkan URL gambar (bebas ambil dari unsplash atau assets sendiri)
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
+      title: "Degrave",
+      tech: ["Next.js", "TypeScript", "Tailwind CSS"],
+      description: "Website company profile modern dengan desain elegan dan performa tinggi untuk kebutuhan branding digital.",
+      link: "https://degravestudio.com/",
+      image: "/project/degrave.png"
     },
     {
-      title: "AI Content Generator",
-      tech: ["Python", "FastAPI", "OpenAI"],
-      description: "Platform SaaS untuk generate konten marketing otomatis menggunakan AI.",
+      title: "Vodeco",
+      tech: ["WordPress", "PHP", "CSS", "JavaScript"],
+      description: "Website Digital Marketing Agency & IT Consultant dengan fitur lengkap termasuk landing page, portofolio, dan sistem konsultasi online.",
+      link: "https://vodeco.co.id",
+      image: "/project/vodeco.png"
+    },
+    {
+      title: "WordPress Custom Plugin",
+      tech: ["PHP", "JavaScript", "AJAX", "WordPress API"],
+      description: "Plugin kustom WordPress terintegrasi dengan antarmuka tematik. Fitur utama mencakup sistem upload multi-file (hingga 15MB) yang mendukung berbagai format dokumen seperti PDF dan DOCX, dilengkapi dengan pratinjau dan validasi berkas.",
       link: "#",
-      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80"
+      image: "/project/plugin.png"
     }
   ] as Project[]
 };
