@@ -54,7 +54,7 @@ export const DATA = {
       title: "WordPress Custom Plugin",
       tech: ["PHP", "JavaScript", "AJAX", "WordPress API"],
       description: "Plugin kustom WordPress terintegrasi dengan antarmuka tematik. Fitur utama mencakup sistem upload multi-file (hingga 15MB) yang mendukung berbagai format dokumen seperti PDF dan DOCX, dilengkapi dengan pratinjau dan validasi berkas.",
-      link: "#",
+      link: "https://github.com/pradiptabayuaji23-del/Project-Comment-Wordpress.git",
       image: "/project/plugin.png"
     }
   ] as Project[]

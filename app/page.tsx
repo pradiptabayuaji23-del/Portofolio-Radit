@@ -1,7 +1,6 @@
 "use client";
 
 import { DATA } from "@/lib/data";
-import Lanyard3D from "@/components/Lanyard3D";
 import FadeIn from "@/components/FadeIn";
 import Navbar from "@/components/Navbar";
 import { ArrowUpRight, Github, Linkedin, Mail, ExternalLink, Download } from "lucide-react";
@@ -68,8 +67,26 @@ export default function Home() {
           </div>
 
           {/* KOLOM KANAN (VISUAL) - Order 2 di Mobile */}
-          <div className="order-2 w-full flex justify-center items-center mt-6 md:mt-0 h-[300px] md:h-[420px]">
-            <Lanyard3D />
+          <div className="order-2 w-full flex justify-center items-center mt-6 md:mt-0 h-[300px] md:h-[420px] relative">
+            <div className="absolute inset-0 bg-blue-100 rounded-full blur-3xl opacity-40 -z-10"></div>
+            <div className="relative w-64 h-80 md:w-72 md:h-[22rem] bg-white p-2 md:p-3 rounded-2xl md:rounded-3xl shadow-xl shadow-neutral-200/50 rotate-2 hover:rotate-0 transition-all duration-500 group">
+              <div className="w-full h-full overflow-hidden rounded-xl md:rounded-2xl">
+                <img 
+                  src="/logo/profile.jpg" 
+                  alt="Profile" 
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              
+              {/* Badge Dekoratif */}
+              <div className="absolute -bottom-5 -left-4 md:-left-6 bg-white px-4 md:px-5 py-2 md:py-3 rounded-xl shadow-xl shadow-neutral-200/50 border border-neutral-100 flex items-center gap-2 md:gap-3 -rotate-3 group-hover:rotate-0 transition-transform duration-500">
+                <span className="text-lg md:text-xl">✌️</span>
+                <div>
+                  <p className="text-[10px] md:text-xs text-neutral-500 font-medium leading-none mb-1">Web</p>
+                  <p className="text-xs md:text-sm font-bold text-neutral-900 leading-none">Development</p>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
